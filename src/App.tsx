@@ -11,19 +11,16 @@ function App() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://countries-search-data-prod-812920491762.asia-south1.run.app/countries"
-        );
-        const data: Country[] = await res.json();
+    fetch(
+      "https://countries-search-data-prod-812920491762.asia-south1.run.app/countries"
+    )
+      .then((res) => res.json())
+      .then((data: Country[]) => {
         setCountries(data);
-      } catch (error) {
-        console.error(error); // important for test
-      }
-    };
-
-    fetchData();
+      })
+      .catch((error) => {
+        console.error(error); // IMPORTANT
+      });
   }, []);
 
   const filteredCountries = countries.filter((country) =>
@@ -31,8 +28,8 @@ function App() {
   );
 
   return (
-    <div className="app">
-      {/* SEARCH INPUT */}
+    <div>
+      {/* MUST HAVE */}
       <input
         type="text"
         placeholder="Search for countries..."
@@ -40,7 +37,6 @@ function App() {
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      {/* COUNTRIES */}
       <div className="countriesContainer">
         {filteredCountries.map((country, index) => (
           <div className="countryCard" key={index}>

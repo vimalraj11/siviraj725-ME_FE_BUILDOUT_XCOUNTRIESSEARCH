@@ -1,49 +1,25 @@
-.app {
-  text-align: center;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-}
-
-/* search bar */
-input {
-  width: 500px;
-  max-width: 90%;
-  height: 30px;
-  padding: 5px 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-}
-
-/* container (IMPORTANT: flex) */
 .countriesContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 10px;
 }
 
-/* card (IMPORTANT class name) */
 .countryCard {
   width: 120px;
   height: 120px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  border: 1px solid #ccc;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* flag */
 .countryCard img {
   width: 60px;
   height: 40px;
-  object-fit: cover;
 }
 
-/* text */
 .countryCard p {
-  margin-top: 8px;
   font-size: 12px;
-  font-weight: bold;
 }
