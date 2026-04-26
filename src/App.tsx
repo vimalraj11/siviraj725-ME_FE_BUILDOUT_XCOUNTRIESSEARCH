@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 type Country = {
-  name: string;
-  flag: string;
-  abbr: string;
+  common: string;
+  png: string;
 };
 
 function App() {
@@ -12,23 +11,15 @@ function App() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const res = await fetch(
-          "https://countries-search-data-prod-812920491762.asia-south1.run.app/countries"
-        );
-
-        const data: Country[] = await res.json();
-        setCountries(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-
-    fetchCountries();
+    fetch(
+      "https://countries-search-data-prod-812920491762.asia-south1.run.app/countries"
+    )
+      .then((res) => res.json())
+      .then((data: Country[]) => setCountries(data))
+      .catch(() => alert("failed to fetch data"));
   }, []);
 
-  const filteredCountries = countries.filter((country) =>
+  const filtered = countries.filter((country) =>
     country.common.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -39,17 +30,12 @@ function App() {
         placeholder="Search for countries..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="search-input"
       />
 
       <div className="countries-container">
-        {filteredCountries.map((country) => (
-          <div className="country-card">
-            <img
-              src={country.png}
-              alt={`${country.common} flag`}
-              className="flag"
-            />
+        {filtered.map((country, index) => (
+          <div className="country-card" key={index}>
+            <img src={country.png} alt={country.common} />
             <p>{country.common}</p>
           </div>
         ))}
