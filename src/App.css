@@ -1,31 +1,26 @@
 body {
   margin: 0;
-  padding: 0;
-  background: #ffffff;
   font-family: "Times New Roman", Times, serif;
 }
 
+/* App */
 .app {
-  width: 100%;
-  min-height: 100vh;
   text-align: center;
-  padding: 20px 0;
+  padding-top: 20px;
 }
 
+/* Search */
 input[type="text"] {
-  width: 520px;
-  max-width: 90%;
-  height: 22px;
-  padding: 3px 8px;
-  margin: 0 auto 24px;
+  width: 500px;
+  height: 24px;
+  margin: 0 auto 20px;
   display: block;
   border: 1px solid #aaa;
-  font-size: 12px;
 }
 
+/* Container */
 .countriesContainer {
-  width: 85%;
-  max-width: 1150px;
+  width: 80%;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -33,13 +28,11 @@ input[type="text"] {
   gap: 12px;
 }
 
+/* Card */
 .countryCard {
   width: 130px;
-  height: 118px;
-  border: 1px solid #dddddd;
-  border-radius: 6px;
-  background: #ffffff;
-  box-sizing: border-box;
+  height: 120px;
+  border: 1px solid #ddd;
 
   display: flex;
   flex-direction: column;
@@ -47,18 +40,16 @@ input[type="text"] {
   justify-content: center;
 }
 
+/* Image */
 .countryCard img {
   width: 70px;
-  height: 48px;
+  height: 45px;
   object-fit: contain;
-  display: block;
 }
 
+/* Text */
 .countryCard p {
-  margin: 8px 4px 0;
+  margin-top: 8px;
   font-size: 14px;
-  line-height: 16px;
-  font-weight: 700;
-  color: #111111;
-  text-align: center;
+  font-weight: bold;
 }

@@ -10,28 +10,21 @@ function App() {
   const [countries, setCountries] = useState<Country[]>([]);
   const [search, setSearch] = useState("");
 
-  // API CALL
   useEffect(() => {
     fetch(
       "https://countries-search-data-prod-812920491762.asia-south1.run.app/countries"
     )
       .then((res) => res.json())
-      .then((data: Country[]) => {
-        setCountries(data);
-      })
-      .catch((error) => {
-        console.error(error); // IMPORTANT for test
-      });
+      .then((data) => setCountries(data))
+      .catch((err) => console.error(err));
   }, []);
 
-  // FILTER LOGIC
-  const filteredCountries = countries.filter((country) =>
-    country.common.toLowerCase().includes(search.toLowerCase())
+  const filtered = countries.filter((c) =>
+    c.common.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div className="app">
-      {/* SEARCH INPUT */}
       <input
         type="text"
         placeholder="Search for countries..."
@@ -39,12 +32,11 @@ function App() {
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      {/* COUNTRY LIST */}
       <div className="countriesContainer">
-        {filteredCountries.map((country, index) => (
-          <div className="countryCard" key={index}>
-            <img src={country.png} alt={country.common} />
-            <p>{country.common}</p>
+        {filtered.map((c, i) => (
+          <div className="countryCard" key={i}>
+            <img src={c.png} alt={c.common} />
+            <p>{c.common}</p>
           </div>
         ))}
       </div>
